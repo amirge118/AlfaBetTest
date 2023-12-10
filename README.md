@@ -1,6 +1,16 @@
 # RAlfaBet Backend Exercise - Event-Manager
 
-##     [Swagger documentation!!](https://amirge118.github.io/AlfaBetTest/)
+### Hiii there!!
+
+  Thanks for the time to check the assignment.
+
+  Hoping everything is ok those days.
+
+  Want to belive this programe will help you schedule only happy and excited events!!
+
+  Amir gefen
+
+##     [Plese check my Swagger documentation!!](https://amirge118.github.io/AlfaBetTest/)
 
  ### Details
 
@@ -17,17 +27,24 @@
 
 #### Rate limiting
 * Have rate limiting to prevent API abuse.
+  
 #### subscribe
 * Allow users to subscribe to events. Notify subscribers via a simulated mechanism (e.g.,
 console log) when an event is updated or canceled.
 
 
 Database architecture:
+
 used PostgreSQL
+
 modules: 
+
  Event
+ 
  Location
+ 
  Subscriber
+ 
  Subscription
 
 #### many-to-one relationship between two entities:(Event-Location , Subscription-(Subscriber, Event)
@@ -35,6 +52,4 @@ modules:
 * Represents the relationships between objects, making the design more object-oriented.
 * The database can optimize queries involving relationships
 
- Test - 
-  EventBatchEventsTest
 
