@@ -1,0 +1,512 @@
+openapi: 3.1.0
+info:
+  version:  1.0.0
+  title:  Alfabet test
+  description: |
+    Manger events, offring users the ability to schedule, retrieve, update, delete, and be reminded of events with additional advanced features.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: amirge90@gmail.com
+servers:
+  - url: https://localhost:8080/api/v1/event
+tags:
+  - name: Event
+    description: Event's api
+  - name: Subscribe
+    description: Subscribe's api
+paths:
+  /getAll:
+    get:
+      tags:
+        - Event
+      summary: Get all events
+      description: Retrieve a list of all scheduled events
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '204':
+          description: successful with no content
+        '500':
+          description: Internal Server Error
+
+  /add:
+    post:
+      tags:
+        - Event
+      summary: Add event
+      requestBody:
+        description: Add event to server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event created successfully!"
+        '400':
+          description: Bed request
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '500':
+          description: Error will trying to add event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+  /add-batch:
+    post:
+      tags:
+        - Event
+      summary: Add event
+      requestBody:
+        description: Add event to server
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event created successfully!"
+        '400':
+          description: Bed request
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '500':
+          description: Error will trying to add event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+
+  /delete:
+    delete:
+      tags:
+        - Event
+      summary: Deletes a event
+      description: delete a event
+      requestBody:
+        description: Event to delete
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: successfully to delete event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "successfully to delete event!"
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to delete event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error"
+  /delete-batch:
+    delete:
+      tags:
+        - Event
+      summary: Deletes a event
+      description: delete a event
+      requestBody:
+        description: delete event list
+        content:
+          application/json:
+            schema:
+              type: array
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '200':
+          description: successfully to delete event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "successfully to delete event!"
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to delete event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error"
+  /update:
+    post:
+      tags:
+        - Event
+      summary: Update an existing event
+      description: Update an existing Event
+      requestBody:
+        description: Update an existent event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        '200':
+          description: Successful update event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Bed request Illegal Argument Exception
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to update event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error"
+  /update-batch:
+    post:
+      tags:
+        - Event
+      summary: Update an existing event
+      description: Update an existing Event
+      requestBody:
+        description: Update an existent list of event
+        content:
+          application/json:
+            schema:
+              type: array
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        '200':
+          description: Successful update event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Bed request Illegal Argument Exception
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to update event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error"
+  /event/byId:
+    get:
+      tags:
+        - Event
+      summary: Get details of a specific event
+      description: Retrieve details of a specific event from all scheduled events
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to update event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error"
+  /event/sorted:
+    get:
+      tags:
+        - Event
+      summary: Get Sorted events
+      description: Retrieve a list of all scheduled events with a given option location or/and sorted by by date, popularity (number of participants), or creation time.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '204':
+          description: successful with no content
+        '500':
+          description: Internal Server Error
+  /event/reminder:
+    post:
+      tags:
+        - Event
+      summary: Set sending a reminder for spacifice event
+      requestBody:
+        description: Send reminders 30 minutes before the event's scheduled time.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: successful create a reminder
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Reminder scheduled successfully for the event"
+        '404':
+          description:  Event not found
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event not found"
+        '500':
+          description: Error will trying to add event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+  /event/subscribe:
+    post:
+      tags:
+        - Subscribe
+      requestBody:
+        description: subscribe user to event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeRequest'
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "subscribe user to event created successfully!"
+        '400':
+          description: Bed request
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '500':
+          description: Error will trying to subscribe user to event
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+  /event/subscribe/update:
+    post:
+      tags:
+        - Subscribe
+      parameters:
+        - name: eventId
+          in: path
+          description: ID of event that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: massage for updating event subscribers
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeRequest'
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Event created successfully!"
+        '400':
+          description: Bed request
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '500':
+          description: Error will trying to update the subscribers
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+  /event/subscribe/cancel:
+    delete:
+      tags:
+        - Subscribe
+      parameters:
+        - name: eventId
+          in: path
+          description: ID of event that needs to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: massage for delete event subscribers
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeRequest'
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "subscribe delete successfully!"
+        '400':
+          description: Bed request
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Bed request"
+        '500':
+          description: Error will trying to delete subscribe
+          content:
+            application/json:
+              schema:
+                type: string
+                default: "Internal Server Error!"
+
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples: [10]
+        name:
+          type: string
+          examples: ["birthday"]
+        date:
+          type: string
+          format: date-time
+        popularity:
+          type: integer
+          format: int32
+          examples: [7]
+        creationTime:
+          type: string
+          format: date-time
+        location:
+          type: 'object'
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples: [10]
+        name:
+          type: string
+          examples: ["Tel Aviv"]
+    EventRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          examples: ["birthday"]
+        date:
+          type: string
+          format: date-time
+        popularity:
+          type: integer
+          format: int32
+          examples: [7]
+        locationName:
+          type: string
+          examples: ["Tel Aviv"]
+    SubscribeRequest:
+      type: object
+      properties:
+        eventId:
+          type: integer
+          format: int32
+          examples: [7]
+        name:
+          type: string
+          examples: ["birthday"]
+        mail:
+          type: string
+
+
