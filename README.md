@@ -11,3 +11,5 @@
 * Have rate limiting to prevent API abuse.
 * Allow users to subscribe to events. Notify subscribers via a simulated mechanism (e.g.,
 console log) when an event is updated or canceled.
+
+
