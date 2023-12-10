@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  version:  1.0.0
-  title:  Alfabet test
+  version: 1.0.0
+  title: Alfabet test
   description: |
     Manger events, offring users the ability to schedule, retrieve, update, delete, and be reminded of events with additional advanced features.
   termsOfService: http://swagger.io/terms/
@@ -320,7 +320,7 @@ paths:
                 type: string
                 default: "Reminder scheduled successfully for the event"
         '404':
-          description:  Event not found
+          description: Event not found
           content:
             application/json:
               schema:
@@ -454,58 +454,58 @@ components:
         id:
           type: integer
           format: int64
-          examples: [10]
+          examples: [ 10 ]
         name:
           type: string
-          examples: ["birthday"]
+          examples: [ "birthday" ]
         date:
           type: string
           format: date-time
         popularity:
           type: integer
           format: int32
-          examples: [7]
+          examples: [ 7 ]
         creationTime:
           type: string
           format: date-time
         location:
-          type: 'object'
+          type: object
     Location:
       type: object
       properties:
         id:
           type: integer
           format: int64
-          examples: [10]
+          examples: [ 10 ]
         name:
           type: string
-          examples: ["Tel Aviv"]
+          examples: [ "Tel Aviv" ]
     EventRequest:
       type: object
       properties:
         name:
           type: string
-          examples: ["birthday"]
+          examples: [ "birthday" ]
         date:
           type: string
           format: date-time
         popularity:
           type: integer
           format: int32
-          examples: [7]
+          examples: [ 7 ]
         locationName:
           type: string
-          examples: ["Tel Aviv"]
+          examples: [ "Tel Aviv" ]
     SubscribeRequest:
       type: object
       properties:
         eventId:
           type: integer
           format: int32
-          examples: [7]
+          examples: [ 7 ]
         name:
           type: string
-          examples: ["birthday"]
+          examples: [ "birthday" ]
         mail:
           type: string
 
