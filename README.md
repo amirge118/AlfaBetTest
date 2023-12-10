@@ -1,4 +1,4 @@
-# RAlfaBet Backend Exercise - Evenr-Manger
+# RAlfaBet Backend Exercise - Event-Manager
 
 ##[Swagger documentation](https://amirge118.github.io/AlfaBetTest/)
 
